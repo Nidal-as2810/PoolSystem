@@ -1,5 +1,6 @@
 package com.PollService.PollService.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
@@ -25,6 +26,20 @@ public class Question {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public QuestionAnswerResponse toQuestionAnswerResponse(Question question, List<Answer> answers){
+        List<Answer> currentAnswers=new ArrayList<>();
+        for(int i=0;i<4;i++){
+            if (answers.size()>i){
+                currentAnswers.add(answers.get(i));
+            }else {
+                currentAnswers.add(null);
+            }
+        }
+        return new QuestionAnswerResponse(
+                question,currentAnswers.get(0),currentAnswers.get(1),currentAnswers.get(2),currentAnswers.get(3)
+        );
     }
 
 }

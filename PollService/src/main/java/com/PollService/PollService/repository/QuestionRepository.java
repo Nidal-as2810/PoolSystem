@@ -5,7 +5,7 @@ import com.PollService.PollService.model.Question;
 import java.util.List;
 
 public interface QuestionRepository {
-    Question createQuestion (Question question);
+    Long createQuestion (Question question);
     Question updateQuestion (Question question);
     void DeleteQuestion (Long id);
 
