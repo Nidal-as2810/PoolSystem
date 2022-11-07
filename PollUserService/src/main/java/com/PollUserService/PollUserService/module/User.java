@@ -1,5 +1,8 @@
 package com.PollUserService.PollUserService.module;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class User {
     private Long userId;
     private String firstName;
@@ -8,8 +11,9 @@ public class User {
     private Integer age;
     private String address;
     private RegisterMode registerMode;
+    private LocalDateTime joinDate;
 
-    public User(Long userId, String firstName, String lastName, String email, Integer age, String address, RegisterMode registerMode) {
+    public User(Long userId, String firstName, String lastName, String email, Integer age, String address, RegisterMode registerMode,LocalDateTime joinDate) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -17,6 +21,7 @@ public class User {
         this.age = age;
         this.address = address;
         this.registerMode = registerMode;
+        this.joinDate=joinDate;
     }
 
     public Long getUserId() {
@@ -73,5 +78,13 @@ public class User {
 
     public void setRegisterMode(RegisterMode registerMode) {
         this.registerMode = registerMode;
+    }
+
+    public LocalDateTime getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(LocalDateTime joinDate) {
+        this.joinDate = joinDate;
     }
 }
