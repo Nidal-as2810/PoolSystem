@@ -18,7 +18,8 @@ public class UserMapper implements RowMapper<User> {
                 rs.getInt("age"),
                 rs.getString("address"),
                 RegisterMode.valueOf(rs.getString("status")),
-                rs.getTimestamp("join_date").toLocalDateTime()
+                rs.getTimestamp("join_date").toLocalDateTime(),
+                rs.getInt("verification")
         );
     }
 }

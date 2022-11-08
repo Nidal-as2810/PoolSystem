@@ -1,6 +1,7 @@
 package com.PollUserService.PollUserService.controller;
 
 import com.PollUserService.PollUserService.module.User;
+import com.PollUserService.PollUserService.module.UserRequestResponeModel;
 import com.PollUserService.PollUserService.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,8 @@ public class UserController {
     UserServiceImpl userService;
 
     @PostMapping(value = "/user/create")
-    public User createUser(@RequestBody User user){
-        return  userService.createUser(user);
+    public UserRequestResponeModel createUser(@RequestBody UserRequestResponeModel userRequestResponeModel){
+        return  userService.createUser(userRequestResponeModel);
     }
 
     @PutMapping(value = "/user/{userId}/update")

@@ -17,8 +17,8 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public User createUser(User user) {
-        String sql="Insert Into "+TABLE_NAME+"(first_name,last_name,email,age,address,status) " +
-                "Values(?,?,?,?,?,?)";
+        String sql="Insert Into "+TABLE_NAME+"(first_name,last_name,email,age,address,status,verification) " +
+                "Values(?,?,?,?,?,?,?)";
 
         jdbcTemplate.update(sql,
                 user.getFirstName(),
@@ -26,7 +26,8 @@ public class UserRepositoryImpl implements UserRepository{
                 user.getEmail(),
                 user.getAge(),
                 user.getAddress(),
-                user.getRegisterMode().name());
+                user.getRegisterMode().name(),
+                user.getVerificationCode());
         Long userId=jdbcTemplate.queryForObject("Select Last_Insert_Id()",Long.class);
         return getUserById(userId);
     }

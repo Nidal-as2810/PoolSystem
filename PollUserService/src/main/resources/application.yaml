@@ -12,3 +12,17 @@ spring:
   h2:
     console:
       enabled: true
+
+
+
+spring.mail.host: smtp.gmail.com
+spring.mail.port: 587
+spring.mail.username: nidalacc29@gmail.com
+spring.mail.password: egnodanhigeumwtd
+spring.mail.properties.mail.smtp.auth: true
+spring.mail.properties.mail.smtp.starttls.enable: true
+spring.mail.properties.mail.smtp.starttls.required: true
+
+spring.mail.scheduler.persistence.enabled: false
+spring.mail.scheduler.persistence.redis.embedded: false
+spring.mail.scheduler.persistence.redis.enabled: false

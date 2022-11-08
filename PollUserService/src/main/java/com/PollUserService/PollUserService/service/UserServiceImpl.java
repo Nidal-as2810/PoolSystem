@@ -1,6 +1,8 @@
 package com.PollUserService.PollUserService.service;
 
+import com.PollUserService.PollUserService.module.RegisterMode;
 import com.PollUserService.PollUserService.module.User;
+import com.PollUserService.PollUserService.module.UserRequestResponeModel;
 import com.PollUserService.PollUserService.repository.UserRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,25 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
     @Autowired
     UserRepositoryImpl userRepository;
+    @Autowired
+    EmailVerificationService emailVerificationService;
 
     @Override
-    public User createUser(User user) {
-        return userRepository.createUser(user);
+    public UserRequestResponeModel createUser(UserRequestResponeModel userRequestResponeModel) {
+        User user=new User(null,userRequestResponeModel.getFirstName(),userRequestResponeModel.getLastName(),
+                userRequestResponeModel.getEmail(),
+                userRequestResponeModel.getAge(),
+                userRequestResponeModel.getAddress(),
+                RegisterMode.NOT_REGISTERED,
+                null,
+                (int) (Math.random()*1000000));
+        emailVerificationService.sendEmail(user.getEmail(),"Your verification code is: "+user.getVerificationCode(), user.getFirstName());
+        user=userRepository.createUser(user);
+        return new UserRequestResponeModel(user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getAge(),
+                user.getAddress());
     }
 
     @Override
