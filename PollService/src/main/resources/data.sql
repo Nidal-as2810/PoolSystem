@@ -11,3 +11,13 @@ CREATE TABLE answerTBL(
     PRIMARY KEY (id),
     FOREIGN KEY (question_id) REFERENCES questionTBL(id)
 );
+
+CREATE TABLE userAnswerTBL(
+    id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id int(11) NOT NULL,
+    question_id int(11) NOT NULL,
+    answer_id int(11) NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY (question_id) REFERENCES questionTBL(id),
+    FOREIGN KEY (answer_id) REFERENCES answerTBL(id)
+);
