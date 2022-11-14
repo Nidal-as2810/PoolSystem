@@ -60,11 +60,58 @@ public class QuestionServiceImpl implements QuestionService{
     public List<QuestionAnswerResponse> getQuestionsList() {
         List<QuestionAnswerResponse> responses=new ArrayList<>();
         List<Question> questions=questionRepository.getQuestionsList();
-
+        if(questions.size()==0){
+            List<QuestionAnswersRequest> list=createQuestionsAndAnswers();
+            for(int i=0;i<list.size();i++){
+                createQuestion(list.get(i));
+            }
+            getQuestionsList();
+        }
         for(int i=0;i<questions.size();i++){
             List<Answer>answers=answerService.getAnswersByQuestionId(questions.get(i).getId());
             responses.add(questions.get(i).toQuestionAnswerResponse(questions.get(i),answers));
         }
         return responses;
+    }
+
+    private List<QuestionAnswersRequest> createQuestionsAndAnswers(){
+        List<QuestionAnswersRequest> list=new ArrayList<>();
+
+        Question question1=new Question(null,"If you had to listen to one album for the rest of your life, what would it be?");
+        Answer answer1=new Answer(null,"Suicide",null);
+        Answer answer2=new Answer(null,"Dónde Están los Ladrones",null);
+        Answer answer3=new Answer(null,"Nick of Time",null);
+        Answer answer4=new Answer(null,"Heart Like a Wheel",null);
+        list.add(new QuestionAnswersRequest(question1,answer1,answer2,answer3,answer4));
+
+        question1=new Question(null,"What's another language you wish you could speak fluently without studying?");
+        answer1=new Answer(null,"Chinese",null);
+        answer2=new Answer(null,"Ukrainian",null);
+        answer3=new Answer(null,"Spanish",null);
+        answer4=new Answer(null,"Japanese",null);
+        list.add(new QuestionAnswersRequest(question1,answer1,answer2,answer3,answer4));
+
+        question1=new Question(null,"What is your favorite flower?");
+        answer1=new Answer(null,"Daisy",null);
+        answer2=new Answer(null,"Apricot",null);
+        answer3=new Answer(null,"Rose ",null);
+        answer4=new Answer(null,"Orchid",null);
+        list.add(new QuestionAnswersRequest(question1,answer1,answer2,answer3,answer4));
+
+        question1=new Question(null,"Which mythical creature would make the best pet?");
+        answer1=new Answer(null,"Dragon",null);
+        answer2=new Answer(null,"Unicorn",null);
+        answer3=new Answer(null,"Goblin",null);
+        answer4=new Answer(null,"Sphinx",null);
+        list.add(new QuestionAnswersRequest(question1,answer1,answer2,answer3,answer4));
+
+        question1=new Question(null,"What wild animals suit you most?");
+        answer1=new Answer(null,"Elephant",null);
+        answer2=new Answer(null,"Tiger",null);
+        answer3=new Answer(null,"Giraffe",null);
+        answer4=new Answer(null,"whale",null);
+        list.add(new QuestionAnswersRequest(question1,answer1,answer2,answer3,answer4));
+
+        return list;
     }
 }

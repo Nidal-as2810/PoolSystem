@@ -6,8 +6,6 @@ public interface UserQuestionAnswerRepository {
     void createQuestionAnswer(UserQuestionAnswer userQuestionAnswer);
     void updateQuestionAnswer(UserQuestionAnswer userQuestionAnswer);
     void deleteQuestionAnswer(Long id);
-    void deleteQusetionAnswerByUserId(Long userId);
-    int usersAnsweredThisQuestionByQuestionId(Long questionId);
-    UserQuestionAnswer questionAnswerByUserId(Long userId);
+    void deleteQuestionAnswerByUserId(Long userId);
 
 }

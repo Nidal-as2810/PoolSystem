@@ -1,14 +1,14 @@
 package com.PollService.PollService.model;
 
-public class UserAnswer {
+public class UserAnswerRequest {
     private Long id;
-    private User user;
+    private String email;
     private QuestionAnswersRequest questionAnswersRequest;
     private Answer answer;
 
-    public UserAnswer(Long id, User user, QuestionAnswersRequest questionAnswersRequest, Answer answer) {
+    public UserAnswerRequest(Long id, String email, QuestionAnswersRequest questionAnswersRequest, Answer answer) {
         this.id = id;
-        this.user = user;
+        this.email = email;
         this.questionAnswersRequest = questionAnswersRequest;
         this.answer = answer;
     }
@@ -19,14 +19,6 @@ public class UserAnswer {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public QuestionAnswersRequest getQuestionAnswersRequest() {
@@ -46,6 +38,14 @@ public class UserAnswer {
     }
 
     public UserQuestionAnswer toUserQuestionAnswer(Long userId,Long questionId,Long answerId){
-        return new UserQuestionAnswer(null,userId,questionId,answerId);
+        return new UserQuestionAnswer(this.id,userId,questionId,answerId);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -21,6 +21,7 @@ dependencies {
 	implementation 'com.h2database:h2:1.4.193'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.5'
 }
 
 tasks.named('test') {

@@ -1,5 +1,6 @@
 package com.PollUserService.PollUserService.service;
 
+import com.PollUserService.PollUserService.PollApi.PollService;
 import com.PollUserService.PollUserService.module.RegisterMode;
 import com.PollUserService.PollUserService.module.User;
 import com.PollUserService.PollUserService.module.UserRequestResponeModel;
@@ -14,6 +15,8 @@ public class UserServiceImpl implements UserService{
     UserRepositoryImpl userRepository;
     @Autowired
     EmailVerificationService emailVerificationService;
+    @Autowired
+    PollService pollService;
 
     @Override
     public UserRequestResponeModel createUser(UserRequestResponeModel userRequestResponeModel) {
@@ -41,6 +44,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteUser(id);
+        pollService.deleteUserAnswersByUserId(id);
     }
 
     @Override

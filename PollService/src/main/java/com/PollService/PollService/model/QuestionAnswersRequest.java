@@ -1,5 +1,8 @@
 package com.PollService.PollService.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QuestionAnswersRequest {
     private Question question;
     private Answer firstAnswer;
